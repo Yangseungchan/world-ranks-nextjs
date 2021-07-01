@@ -133,8 +133,34 @@ const Country = ({ country }) => {
 
 export default Country;
 
-export const getServerSideProps = async ({ params }) => {
+// export const getServerSideProps = async ({ params }) => {
+//   const country = await getCountry(params.id);
+//   return {
+//     props: {
+//       country,
+//     },
+//   };
+// };
+
+export const getStaticPaths = async () => {
+  const apiUrl = "https://restcountries.eu/rest/v2/all";
+  const res = await axios.get(apiUrl);
+  const countries = res.data;
+
+  const paths = countries.map((country) => ({
+    params: {
+      id: country.alpha3Code,
+    },
+  }));
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
   const country = await getCountry(params.id);
+
   return {
     props: {
       country,
