@@ -108,6 +108,7 @@ const Country = ({ country }) => {
                   <Link
                     href={`/country/${alpha3Code}`}
                     key={Number(numericCode)}
+                    passHref
                   >
                     <div className={styles.details_panel_borders_country}>
                       <div

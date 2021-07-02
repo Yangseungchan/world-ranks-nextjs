@@ -96,6 +96,7 @@ const CountriesTable = ({ countries }) => {
         <Link
           href={`/country/${country.alpha3Code}`}
           key={Number(country.numericCode)}
+          passHref
         >
           <div className={styles.row}>
             <div className={styles.flag}>
